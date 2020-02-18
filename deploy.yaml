@@ -1,0 +1,36 @@
+---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: server-deployment
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          component: backend
+      template:
+        metadata:
+          labels:
+            component: backend
+        spec:
+          containers:
+          - name: backend
+            image: ${REPOSITORY_PROD_TAG}
+            imagePullPolicy: Never
+            ports:
+            - containerPort: 8080
+
+---
+
+    apiVersion: v1
+    kind: Service
+    metadata: 
+      name: backend-cluster-ip-service
+    spec: 
+      ports: 
+        - port: 8080
+          targetPort: 8080
+          nodePort: 32080
+      selector: 
+        component: backend
+      type: NodePort
