@@ -29,24 +29,24 @@ pipeline {
 
         }
         
-        stage('Docker build Test image') {
-            steps {
-                sh 'docker build -t ${REPOSITORY_TEST_TAG} -f Dockerfile.dev .'
-            }
-        }
+        // stage('Docker build Test image') {
+        //     steps {
+        //         sh 'docker build -t ${REPOSITORY_TEST_TAG} -f Dockerfile.dev .'
+        //     }
+        // }
 
-         stage('Docker Test image') {
-            steps {
-                sh 'docker run --name=${CONTAINER_NAME} -e CI=true ${REPOSITORY_TEST_TAG} npm run test'
-            }
-        }
+        //  stage('Docker Test image') {
+        //     steps {
+        //         sh 'docker run --name=${CONTAINER_NAME} -e CI=true ${REPOSITORY_TEST_TAG} npm run test'
+        //     }
+        // }
 
-        stage('Docker delete Test image') {
-            steps {
-                sh 'docker rm ${CONTAINER_NAME}'
-                sh 'docker rmi ${REPOSITORY_TEST_TAG}'
-            }
-        }
+        // stage('Docker delete Test image') {
+        //     steps {
+        //         sh 'docker rm ${CONTAINER_NAME}'
+        //         sh 'docker rmi ${REPOSITORY_TEST_TAG}'
+        //     }
+        // }
 
         stage('Docker build Prod image') {
             steps {
