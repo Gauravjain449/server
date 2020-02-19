@@ -55,7 +55,7 @@
             - containerPort: 8080
             env:
               - name: REDIS_HOST
-                value: redis-cluster-ip-service
+                value: redis-server
               - name: REDIS_PORT
                 value: '6379'
 
